@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Kanban
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="top-section">
+        <h1>Kanban Board</h1>
+    </div>
+    <div class="kanban-board-container">
+        {% for stage, columns in stages.items() %}
+        <div class="kanban-column" data-id="{{ loop.index }}">
+            <div class="kanban-column-header"><a href="{{ url_for('kanban', stage=stage) }}">{{ stage.replace('_', ' ').title() }}</a></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="bottom-section">
+        <p>&copy; 2023 My Website</p>
+    </div>
+</div>
+{% endblock %}

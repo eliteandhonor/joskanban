@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ stage.replace('_', ' ').title() }}
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="top-section">
+        <h1>{{ stage.replace('_', ' ').title() }}</h1>
+    </div>
+    <div class="kanban-board-container">
+        {% for column in stages %}
+        <div class="kanban-column" data-id="{{ loop.index }}">
+            <div class="kanban-column-header">{{ column }}</div>
+            {% for task in tasks if task.stage == stage and task.status == column %}
+            <div class="kanban-card" data-task-id="{{ task.id }}">
+                <div class="kanban-card-title">{{ task.title }}</div>
+                <div class="kanban-card-description">{{ task.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="bottom-section">
+        <p>&copy; 2023 My Website</p>
+    </div>
+</div>
+{% endblock %}
